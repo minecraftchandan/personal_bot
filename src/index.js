@@ -257,4 +257,4 @@ client.on('interactionCreate', async interaction => {
 });
 
 // Start the bot with your token from .env file
-client.login(process.env.DISCORD_TOKEN);
+client.login('MTMzODgzMDQzODMxOTUyNTkzMA.G_JAK-.qMj7L3w-yDVnAp8x5MwMxEi4Kq8zwx-eH29_mA');
