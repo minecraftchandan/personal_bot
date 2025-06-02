@@ -1,4 +1,4 @@
-require("./server.js"); // Starts the web server
+require("../server.js"); // Starts the web server
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
