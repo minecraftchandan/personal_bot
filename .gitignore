@@ -1,0 +1,31 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Firebase service key (never commit secrets!)
+serviceAccountKey.json
+
+# IDE/Editor settings
+.vscode/
+*.code-workspace
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS/System files
+.DS_Store
+Thumbs.db
+
+# Build outputs (if using TypeScript or bundling)
+dist/
+build/
+
+# Optional: Ignore JSON files that store runtime or user data
+config.json
+cards.json
+data.json
+inventory/*.json
