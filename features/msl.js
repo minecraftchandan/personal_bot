@@ -29,19 +29,29 @@ module.exports = (client) => {
           .setFooter({ text: `Page ${pageIndex + 1} of ${totalPages}` });
 
         const slice = guilds.slice(start, end);
+
         for (let i = 0; i < slice.length; i++) {
           const guild = slice[i];
-          let invite = 'No Invite Available';
+          let invite = '❌ No invite could be created';
 
           try {
             const channels = guild.channels.cache.filter(c =>
               c.isTextBased() &&
-              c.permissionsFor(guild.members.me).has(PermissionsBitField.Flags.CreateInstantInvite)
+              c.permissionsFor(guild.members.me)?.has(PermissionsBitField.Flags.CreateInstantInvite)
             );
-            const firstChannel = channels.first();
-            if (firstChannel) {
-              const inviteObj = await firstChannel.createInvite({ maxAge: 0, maxUses: 0 });
-              invite = `[Invite](${inviteObj.url})`;
+
+            for (const [_, channel] of channels) {
+              try {
+                const inviteObj = await channel.createInvite({
+                  maxAge: 0,
+                  maxUses: 0,
+                  reason: 'Auto-generated for bot owner'
+                });
+                invite = `[link](${inviteObj.url})`;
+                break; // ✅ Stop after first successful invite
+              } catch {
+                // try next channel
+              }
             }
           } catch {
             invite = '❌ Failed to fetch invite';
@@ -105,3 +115,4 @@ module.exports = (client) => {
     }
   });
 };
+
